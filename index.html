@@ -3,111 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodrigo Augusto | Método Farol - Resultados Reais</title>
+    <title>Rodrigo Augusto | Método Farol - Performance Local</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #001F3F; --accent: #C5A021; --text: #1a1a1a; --bg: #ffffff; --light: #f8f9fa; }
+        :root { --primary: #001F3F; --accent: #C5A021; --text: #1a1a1a; --bg: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); }
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
         
         header { padding: 40px 0; text-align: center; border-bottom: 1px solid #eee; }
-        .logo { font-weight: 900; font-size: 1.6rem; color: var(--primary); letter-spacing: -1px; }
+        .logo { font-weight: 900; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
 
-        /* Hero */
-        .hero { padding: 80px 0; text-align: center; background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%); }
-        .hero h1 { font-size: 2.8rem; font-weight: 900; color: var(--primary); margin-bottom: 20px; letter-spacing: -1.5px; }
-        .hero p { font-size: 1.2rem; color: #555; max-width: 750px; margin: 0 auto 40px; }
+        .hero { padding: 80px 0; text-align: center; background: #fcfcfc; }
+        .hero h1 { font-size: 2.6rem; font-weight: 900; color: var(--primary); margin-bottom: 20px; letter-spacing: -1.5px; }
+        .hero p { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 30px; }
 
-        /* Cases */
-        .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 50px 0; }
-        .case-card { padding: 40px; border: 1px solid #eef0f2; border-radius: 12px; background: #fff; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .case-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .case-card h3 { color: #666; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
-        .stat { font-size: 3.5rem; font-weight: 900; color: var(--primary); display: block; margin-bottom: 5px; }
-        .stat-label { font-weight: 700; color: var(--accent); font-size: 1.2rem; margin-bottom: 20px; display: block; }
-        .case-text { color: #666; font-size: 1rem; }
+        .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
+        .case-card { padding: 30px; border: 1px solid #ddd; border-radius: 8px; transition: 0.3s; }
+        .case-card:hover { border-color: var(--accent); }
+        .case-card h3 { font-size: 0.85rem; text-transform: uppercase; color: #888; margin-bottom: 10px; }
+        .stat { font-size: 3rem; font-weight: 900; color: var(--primary); display: block; }
+        .stat-label { font-weight: 700; color: var(--accent); display: block; margin-bottom: 10px; }
 
-        /* Calculadora */
-        .calc-area { background: var(--primary); color: #fff; padding: 60px 30px; border-radius: 16px; text-align: center; margin-bottom: 60px; }
-        .calc-area h2 { font-size: 2rem; margin-bottom: 15px; }
-        input { width: 100%; max-width: 300px; padding: 15px; border-radius: 6px; border: none; margin: 20px 0; font-size: 1.2rem; text-align: center; font-weight: 700; }
+        .calc-area { background: var(--primary); color: #fff; padding: 50px 30px; border-radius: 12px; text-align: center; margin: 50px 0; }
+        input { width: 100%; max-width: 280px; padding: 15px; border-radius: 4px; border: none; margin: 20px 0; font-size: 1.1rem; text-align: center; font-weight: 700; }
         
-        .btn { background: var(--accent); color: #000; padding: 18px 45px; border: none; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-block; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
-        .btn:hover { background: #b08d1a; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn { background: var(--accent); color: #000; padding: 18px 40px; border: none; border-radius: 4px; font-weight: 800; text-decoration: none; display: inline-block; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+        .btn:hover { background: #b08d1a; }
 
-        footer { text-align: center; padding: 60px 0; color: #aaa; font-size: 0.85rem; border-top: 1px solid #eee; }
+        .benefits { padding: 40px 0; text-align: left; }
+        .benefits h2 { margin-bottom: 20px; color: var(--primary); }
+        .benefits ul { list-style: none; }
+        .benefits li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .benefits li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
-        @media (max-width: 768px) {
-            .case-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.1rem; }
-        }
+        footer { text-align: center; padding: 60px 0; color: #aaa; font-size: 0.8rem; border-top: 1px solid #eee; }
+
+        @media (max-width: 768px) { .case-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
 
 <header>
     <div class="container">
-        <div class="logo">RODRIGO AUGUSTO <span style="font-weight: 300;">|</span> MÉTODO FAROL</div>
+        <div class="logo">RODRIGO AUGUSTO <span style="font-weight: 300; color: #ccc;">|</span> MÉTODO FAROL</div>
     </div>
 </header>
 
 <section class="hero">
     <div class="container">
-        <h1>Transforme buscas no Google em orçamentos reais.</h1>
-        <p>Eu não vendo visualizações. Eu construo e otimizo perfis que geram chamadas, chats e rotas para negócios que querem crescer agora.</p>
-        <a href="https://wa.me/5511947499755?text=Olá+Rodrigo,+gostaria+de+uma+auditoria+no+meu+perfil." class="btn">Solicitar Auditoria de Performance</a>
+        <h1>O Google não é vitrine. É balcão de vendas.</h1>
+        <p>Eu ativo o canal de busca da sua empresa para gerar contatos diretos e recorrentes. Sem métricas vazias.</p>
+        <a href="https://wa.me/5511999999999?text=Olá+Rodrigo,+gostaria+de+uma+auditoria+no+meu+perfil." class="btn">Solicitar Auditoria Gratuita</a>
     </div>
 </section>
 
 <section class="container">
     <div class="case-grid">
         <div class="case-card">
-            <h3>Pips Pegue e Monte</h3>
+            <h3>Pips (Criado do zero)</h3>
             <span class="stat">151</span>
             <span class="stat-label">Contatos Diretos</span>
-            <p class="case-text"><strong>Perfil criado do zero.</strong> Em 6 meses, a estratégia gerou 59 chamadas telefônicas e 92 chats. Além de 268 solicitações de rota.</p>
+            <p>59 chamadas e 92 chats em 6 meses. Uma base sólida de novos clientes todos os meses.</p>
         </div>
-
         <div class="case-card">
-            <h3>Saly Barueri</h3>
+            <h3>Saly (Ativação Técnica)</h3>
             <span class="stat">22</span>
-            <span class="stat-label">Novos Leads em 30 dias</span>
-            <p class="case-text"><strong>Ativação de canal morto.</strong> Após assumir a gestão em novembro, o chat saltou de 0 para 22 cliques reais no mês de dezembro.</p>
+            <span class="stat-label">Leads em 30 dias</span>
+            <p>Canal de chat ativado do zero para 22 intenções de compra no primeiro mês de gestão.</p>
         </div>
+    </div>
+
+    <div class="benefits">
+        <h2>Por que focar no Google Meu Negócio?</h2>
+        <ul>
+            <li><strong>Conversão:</strong> O cliente que te acha no Google já decidiu que quer comprar.</li>
+            <li><strong>LTV (Lucro Acumulado):</strong> Um cliente conquistado hoje volta e indica. O custo de aquisição cai a cada mês.</li>
+            <li><strong>Independência:</strong> Pare de depender de anúncios caros ou algoritmos de redes sociais.</li>
+        </ul>
     </div>
 
     <div class="calc-area">
-        <h2>Simulador de Lucro Oculto</h2>
-        <p>Se o Google te entregasse apenas 15% dos resultados acima, quanto você faturaria?</p>
+        <h2>Simulador de Lucro Acumulado</h2>
+        <p>Veja o impacto de converter apenas 1 de cada 4 contatos que o Google te entrega:</p>
         <input type="number" id="ticket" placeholder="Seu Ticket Médio (R$)">
         <br>
-        <button class="btn" onclick="calc()">Calcular Potencial</button>
-        <p id="res" style="margin-top: 25px; font-size: 1.4rem; font-weight: 700; color: var(--accent);"></p>
+        <button class="btn" onclick="calc()">Ver Potencial de Receita</button>
+        <div id="res" style="margin-top: 25px; font-weight: 700;"></div>
     </div>
 </section>
 
-<section class="container" style="text-align: center; padding: 40px 0 80px;">
-    <h2>Sem promessas. Só engenharia de busca.</h2>
-    <p style="max-width: 700px; margin: 20px auto 40px; color: #666;">
-        Meu trabalho é técnico: garantir que sua empresa seja a primeira resposta do Google quando o cliente estiver com o dinheiro na mão.
+<section class="container" style="text-align: center; padding-bottom: 80px;">
+    <h2>Direto e sem burocracia.</h2>
+    <p style="margin: 20px auto 35px; max-width: 600px; color: #666;">
+        Meu trabalho é garantir que o seu telefone toque. Se você atende bem, o lucro é inevitável.
     </p>
-    <a href="https://wa.me/5511947499755?text=Olá+Rodrigo,+gostaria+de+uma+auditoria+no+meu+perfil." class="btn">Falar com Rodrigo Augusto</a>
+    <a href="https://wa.me/5511947?text=Olá+Rodrigo,+gostaria+de+uma+auditoria+no+meu+perfil." class="btn">Falar com Rodrigo</a>
 </section>
 
 <footer>
-    <p>&copy; 2026 Rodrigo Augusto - Estrategista em Performance Local.</p>
-    <p style="margin-top: 10px;">Dados reais extraídos do Google Business Intelligence (Ago/25 - Jan/26).</p>
+    <p>&copy; 2026 Rodrigo Augusto - Especialista em Performance de Busca Local.</p>
 </footer>
 
 <script>
     function calc() {
-        const t = document.getElementById('ticket').value;
+        const t = parseFloat(document.getElementById('ticket').value);
         if(t > 0) {
-            // Cálculo: Média de 25 contatos fundo de funil com 15% de fechamento
-            const total = (25 * 0.15) * t;
+            // MÉTRICA: 30 contatos reais (base cases) com 25% de conversão
+            const vendas = 30 * 0.25;
+            const mes = vendas * t;
+            const ano = mes * 12;
             document.getElementById('res').innerHTML = 
-                `Seu negócio pode faturar até R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})} adicionais por mês.`;
+                `<span style="font-size: 1.5rem; color: #C5A021;">+ R$ ${mes.toLocaleString('pt-BR', {minimumFractionDigits: 2})} /mês</span><br>` +
+                `<span style="font-size: 1rem; color: #fff; font-weight: 400;">Impacto de R$ ${ano.toLocaleString('pt-BR', {minimumFractionDigits: 2})} no faturamento anual.</span>`;
         }
     }
 </script>
