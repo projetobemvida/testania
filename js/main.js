@@ -230,3 +230,56 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+/* ============================================
+   CONTROLE DO MENU MOBILE
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+    
+    // Criar overlay se não existir
+    let overlay = document.querySelector('.menu-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'menu-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    function toggleMenu() {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    // Fechar menu ao clicar em um link
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar menu ao redimensionar a tela para desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            closeMenu();
+        }
+    });
+});
