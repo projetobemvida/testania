@@ -10,55 +10,6 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Calculadora de simulador
-function calcularSimulador() {
-    const ticketInput = document.getElementById('ticket');
-    const ticket = parseFloat(ticketInput.value);
-
-    if (!ticket || ticket <= 0) {
-        alert('Por favor, insira um valor válido para o ticket médio.');
-        return;
-    }
-
-    // 22 contatos por mês × 25% de conversão = 5.5 clientes
-    const contatosPorMes = 22;
-    const taxaConversao = 0.25;
-    const clientesGerados = contatosPorMes * taxaConversao;
-    const receitaMensal = clientesGerados * ticket;
-
-    // Exibir resultado
-    const resultadoDiv = document.getElementById('resultado-simulador');
-    const valorSpan = document.getElementById('valor-resultado');
-
-    valorSpan.textContent = formatarMoeda(receitaMensal);
-    resultadoDiv.style.display = 'block';
-
-    // Animar o resultado
-    resultadoDiv.style.animation = 'none';
-    setTimeout(() => {
-        resultadoDiv.style.animation = 'fadeInUp 0.5s ease-out';
-    }, 10);
-
-    // Scroll para o resultado
-    setTimeout(() => {
-        resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 300);
-}
-
-// Formatar valor em moeda
-function formatarMoeda(valor) {
-    return valor.toLocaleString('pt-BR', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    });
-}
-
-// Abrir formulário (placeholder)
-function abrirFormulario() {
-    alert('Formulário de auditoria. Redirecionando para WhatsApp...');
-    window.location.href = 'https://wa.me/5511999999999?text=Gostaria%20de%20solicitar%20uma%20auditoria%20gratuita%20do%20M%C3%A9todo%20Farol';
-}
-
 // Animação de entrada dos elementos
 document.addEventListener('DOMContentLoaded', function() {
     // Animar elementos com classe animate-fade-in-up ao scroll
@@ -98,15 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, cardObserverOptions);
 
     // Observar cards
-    document.querySelectorAll('.resultado-card, .beneficio-card, .pilar-card').forEach(el => {
+    document.querySelectorAll('.problema-card, .lista-item, .pilar-card, .resultado-card, .funciona-card, .nao-faco-item').forEach(el => {
         cardObserver.observe(el);
-    });
-
-    // Permitir Enter no input do simulador
-    document.getElementById('ticket').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            calcularSimulador();
-        }
     });
 
     // Adicionar efeito de hover aos botões
@@ -141,40 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Animação de números contadores
-    function animarNumeros() {
-        const numeros = document.querySelectorAll('.resultado-numero');
-        
-        numeros.forEach(numero => {
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !numero.dataset.animado) {
-                        numero.dataset.animado = 'true';
-                        const valor = parseInt(numero.textContent);
-                        let atual = 0;
-                        const incremento = valor / 30;
-                        
-                        const intervalo = setInterval(() => {
-                            atual += incremento;
-                            if (atual >= valor) {
-                                numero.textContent = valor;
-                                clearInterval(intervalo);
-                            } else {
-                                numero.textContent = Math.floor(atual);
-                            }
-                        }, 30);
-                        
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            observer.observe(numero);
-        });
-    }
-
-    animarNumeros();
-
     // Adicionar classe ativa ao link de navegação baseado no scroll
     window.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section[id]');
@@ -198,20 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Adicionar suporte a temas (opcional)
-function alternarTema() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('tema', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-}
-
-// Carregar tema salvo
-window.addEventListener('load', function() {
-    const temaSalvo = localStorage.getItem('tema');
-    if (temaSalvo === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-});
-
 // Função para rastrear eventos (analytics)
 function rastrearEvento(categoria, acao, label) {
     if (window.gtag) {
@@ -231,55 +127,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-/* ============================================
-   CONTROLE DO MENU MOBILE
-   ============================================ */
+// Adicionar suporte a temas (opcional)
+function alternarTema() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('tema', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
-    
-    // Criar overlay se não existir
-    let overlay = document.querySelector('.menu-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'menu-overlay';
-        document.body.appendChild(overlay);
+// Carregar tema salvo
+window.addEventListener('load', function() {
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'dark') {
+        document.body.classList.add('dark-mode');
     }
-
-    function toggleMenu() {
-        menuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        overlay.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    }
-
-    function closeMenu() {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        overlay.classList.remove('active');
-        body.classList.remove('menu-open');
-    }
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMenu);
-    }
-
-    if (overlay) {
-        overlay.addEventListener('click', closeMenu);
-    }
-
-    // Fechar menu ao clicar em um link
-    const links = document.querySelectorAll('.nav-link');
-    links.forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    // Fechar menu ao redimensionar a tela para desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            closeMenu();
-        }
-    });
 });
